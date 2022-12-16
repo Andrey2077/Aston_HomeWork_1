@@ -14,9 +14,9 @@ public interface MyMap<K,V> {
 
 
     /**
-     * Tests if this hashtable maps no keys to values.
+     * Tests if this hashmap maps no keys to values.
      *
-     * @return  {@code true} if this hashtable maps no keys to values;
+     * @return  {@code true} if this hashmap no keys to values;
      *          {@code false} otherwise.
      */
     boolean isEmpty();
@@ -33,26 +33,26 @@ public interface MyMap<K,V> {
 
     /**
      * Maps the specified {@code key} to the specified
-     * {@code value} in this hashtable. Neither the key nor the
+     * {@code value} in this hashmap. Neither the key nor the
      * value can be {@code null}.
      *
      *
-     * @param      key     the hashtable key
+     * @param      key     the hashmap key
      * @param      value   the value
-     * @return     the previous value of the specified key in this hashtable,
+     * @return     the previous value of the specified key in this hashmap,
      *             or {@code null} if it did not have one
      */
     V put(K key, V value);
 
     /**
-     * Clears this hashtable so that it contains no keys.
+     * Clears this hashmap so that it contains no keys.
      */
     void clear();
 
 
     /**
      * Removes the key (and its corresponding value) from this
-     * hashtable. This method does nothing if the key is not in the hashtable.
+     * hashmap. This method does nothing if the key is not in the hashmap.
      *
      * @param   key   the key that needs to be removed
      * @return removed value

@@ -80,9 +80,9 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
     }
 
     /**
-     * Tests if this hashtable maps no keys to values.
+     * Tests if this hashmaps no keys to values.
      *
-     * @return  {@code true} if this hashtable maps no keys to values;
+     * @return  {@code true} if this hash maps no keys to values;
      *          {@code false} otherwise.
      */
     @Override
@@ -134,7 +134,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
      * value can be {@code null}.
      *
      *
-     * @param      key     the hashtable key
+     * @param      key     the hashmap key
      * @param      value   the value
      * @return     the previous value of the specified key in this map,
      *             or {@code null} if it did not have one
@@ -176,9 +176,9 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
 
     /**
      * Increases the capacity of and internally reorganizes this
-     * hashtable, in order to accommodate and access its entries more
+     * hashmap, in order to accommodate and access its entries more
      * efficiently.  This method is called automatically when the
-     * number of keys in the hashtable exceeds this hashtable's capacity
+     * number of keys in the hashmap exceeds this hashmap's capacity
      * and load factor.
      */
     private void reHash(){
@@ -217,7 +217,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
 
     /**
      * Removes the key (and its corresponding value) from this
-     * hashtable. This method does nothing if the key is not in the hashtable.
+     * hashmap. This method does nothing if the key is not in the hashmap.
      *
      * @param   key   the key that needs to be removed
      * @return removed value
