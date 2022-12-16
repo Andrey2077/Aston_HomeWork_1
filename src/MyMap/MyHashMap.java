@@ -173,6 +173,14 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
 
     }
 
+
+    /**
+     * Increases the capacity of and internally reorganizes this
+     * hashtable, in order to accommodate and access its entries more
+     * efficiently.  This method is called automatically when the
+     * number of keys in the hashtable exceeds this hashtable's capacity
+     * and load factor.
+     */
     private void reHash(){
 
         int oldCapacity = initialCapacity;
