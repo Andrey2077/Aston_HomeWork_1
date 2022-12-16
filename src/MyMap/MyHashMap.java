@@ -33,7 +33,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
      */
     private float loadfactor;
 
-
+    private int count;
 
     public MyHashMap() {
         this(INITIAL_CAPACITY, LOADFACTOR);
@@ -48,17 +48,21 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
      */
     public MyHashMap(int initialCapacity, float loadFactor) {
 
+        this.initialCapacity = initialCapacity;
+
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal Capacity: "+
                     initialCapacity);
         if (loadFactor <= 0 || Float.isNaN(loadFactor))
             throw new IllegalArgumentException("Illegal Load: "+loadFactor);
 
-        if (initialCapacity==0)
-            initialCapacity = 1;
+        if (initialCapacity==0) {
+            this.initialCapacity = INITIAL_CAPACITY;
+        }
+
         this.loadfactor = loadFactor;
         entries = new MyEntry[initialCapacity];
-        threshold = initialCapacity * loadFactor;
+        threshold = initialCapacity * loadfactor;
     }
 
     public MyHashMap(int initialCapacity) {
@@ -144,6 +148,10 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         if (entry == null) {
             entries[index] = new MyEntry<Object, Object>(key, value);
             size++;
+            count++;
+            if (count >= threshold) {
+                reHash();
+            }
             return null;
         } else {
             while (entry.getNext() != null) {
@@ -164,6 +172,29 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
         }
 
     }
+
+    private void reHash(){
+
+        int oldCapacity = initialCapacity;
+        initialCapacity = (oldCapacity << 1) + 1;
+        threshold = initialCapacity * loadfactor;
+
+        MyEntry[] tempArray = entries;
+        entries = new MyEntry[initialCapacity];
+
+        for(int i = tempArray.length - 1; i >= 0; i--) {
+
+            while(tempArray[i] != null) {
+                MyEntry tempEntry = tempArray[i];
+
+                tempArray[i] = tempEntry.getNext();
+                int index = indexFor(tempEntry.getKey().hashCode(), entries.length);
+                tempEntry.next = entries[index];
+                entries[index] = tempEntry;
+            }
+        }
+    }
+
 
     /**
      * Clears this map so that it contains no keys.
@@ -198,6 +229,7 @@ public class MyHashMap<K,V> implements MyMap<K,V> {
                     old = entry.getValue();
                     entries[index] = null;
                     size--;
+                    count--;
                 } else {
                     old = entry.getValue();
                     entries[index] = entry.getNext();

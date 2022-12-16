@@ -80,6 +80,19 @@ public class Main {
         System.out.println(myHashMap.size());
         System.out.println(myHashMap.remove("Something"));
         System.out.println(myHashMap.size());
+        myHashMap.clear();
+
+
+        MyHashMap<Integer, String> myHashMap2= new MyHashMap<Integer, String>();
+
+        for(int i = 0; i < 1000; i++){
+            myHashMap2.put(random.nextInt(1000), "string");
+        }
+
+
+
+
+
     }
 
 
